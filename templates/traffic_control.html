@@ -1,0 +1,111 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="w3-container w3-row-padding w3-margin">
+  <div class="w3-third">
+
+    <div id="1" class="w3-card w3-padding {{ c }}">
+      <p>Road: {{road1}}</p>
+      <p>Jam Factor: {{jam1}}</p>
+      <p>Current Speed: {{cspeed1}}</p>
+      <p>Free Flow Speed: {{fspeed1}}</p>
+      <p>Green Signal Time: {{time1}} Sec</p>
+    </div>
+
+  </div>
+
+  <div class="w3-third">
+
+    <div id="2" class="w3-card w3-padding {{ c }}">
+      <p>Road: {{road2}}</p>
+      <p>Jam Factor: {{jam2}}</p>
+      <p>Current Speed: {{cspeed2}}</p>
+      <p>Free Flow Speed: {{fspeed2}}</p>
+      <p>Green Signal Time: {{time2}} Sec</p>
+    </div>
+
+  </div>
+</div>
+
+<div class="w3-container w3-row-padding w3-margin">
+  <div class="w3-third">
+
+    <div id="3" class="w3-card w3-padding {{ c }}">
+      <p>Road: {{road3}}</p>
+      <p>Jam Factor: {{jam3}}</p>
+      <p>Current Speed: {{cspeed3}}</p>
+      <p>Free Flow Speed: {{fspeed3}}</p>
+      <p>Green Signal Time: {{time3}} Sec</p>
+    </div>
+
+  </div>
+
+  <div class="w3-third">
+
+    <div id="4" class="w3-card w3-padding {{ c }}">
+      <p>Road: {{road4}}</p>
+      <p>Jam Factor: {{jam4}}</p>
+      <p>Current Speed: {{cspeed4}}</p>
+      <p>Free Flow Speed: {{fspeed4}}</p>
+      <p>Green Signal Time: {{time4}} Sec</p>
+    </div>
+
+  </div>
+</div>
+
+
+<script>
+
+  var t1 = {{ t1|safe }};
+  var t2 = {{ t2|safe }};
+  var t3 = {{ t3|safe }};
+  var t4 = {{ t4|safe }};
+
+
+  setTimeout(signal1, 1000);
+  setTimeout(signal2, t1*1000);
+  setTimeout(signal3, (t1*1000)+(t2*1000));
+  setTimeout(signal4, (t1*1000)+(t2*1000)+(t3*1000));
+
+
+  function signal1() 
+  {
+    document.getElementById("1").style.backgroundColor='green';
+    document.getElementById("2").style.backgroundColor='red';
+    document.getElementById("3").style.backgroundColor='red';
+    document.getElementById("4").style.backgroundColor='yellow';
+  }
+
+  function signal2() 
+  {
+    document.getElementById("1").style.backgroundColor='yellow';
+    document.getElementById("2").style.backgroundColor='green';
+    document.getElementById("3").style.backgroundColor='red';
+    document.getElementById("4").style.backgroundColor='red';
+  }
+
+  function signal3() 
+  {
+    document.getElementById("1").style.backgroundColor='red';
+    document.getElementById("2").style.backgroundColor='yellow';
+    document.getElementById("3").style.backgroundColor='green';
+    document.getElementById("4").style.backgroundColor='red';
+  }
+
+  function signal4() 
+  {
+    document.getElementById("1").style.backgroundColor='red';
+    document.getElementById("2").style.backgroundColor='red';
+    document.getElementById("3").style.backgroundColor='yellow';
+    document.getElementById("4").style.backgroundColor='green';
+
+    setTimeout(signal1, t4*1000);
+    setTimeout(signal2, (t4*1000)+(t1*1000));
+    setTimeout(signal3, (t4*1000)+(t1*1000)+(t2*1000));
+    setTimeout(signal4, (t4*1000)+(t1*1000)+(t2*1000)+(t3*1000));
+  }
+    
+
+</script>
+
+{% endblock %}

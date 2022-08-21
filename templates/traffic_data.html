@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="w3-card-4 w3-margin">
+
+    <header class="w3-container w3-blue">
+      <h1>Selected Roads</h1>
+    </header>
+    <img src="static/images/traffic.jpg" alt="Alps" style="width:100%">
+
+    <br>
+    <footer class="w3-container w3-blue">
+      <h5></h5>
+    </footer>
+    
+    </div>
+
+    <div class="w3-card-4 w3-margin">
+
+        <header class="w3-container w3-blue">
+          <h1>Traffic Data</h1>
+        </header>
+        
+        <div class="w3-container">
+        
+          {% for table in tables %}
+            {{titles[loop.index]}}
+            {{ table|safe }}
+          {% endfor %}
+    
+        </div>
+        <br>
+    
+        <form class="w3-container w3-margin" action="" method="post" enctype="multipart/form-data">
+    
+            <input class="w3-btn w3-blue-grey" name="sub" type="submit" value="Export">
+        </form>
+
+        <footer class="w3-container w3-blue">
+          <h5></h5>
+        </footer>
+    </div>
+
+
+
+    {% endblock %}
